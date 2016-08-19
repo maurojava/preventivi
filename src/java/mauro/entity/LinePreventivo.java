@@ -9,12 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class LinePreventivo implements Serializable {
 
     @Basic
     private int quantity;
+
+    @ManyToOne(targetEntity = Preventivo.class)
+    private Preventivo preventivo;
 
     @Basic
     private double price;
@@ -36,6 +40,14 @@ public class LinePreventivo implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Preventivo getPreventivo() {
+        return this.preventivo;
+    }
+
+    public void setPreventivo(Preventivo preventivo) {
+        this.preventivo = preventivo;
     }
 
     public double getPrice() {

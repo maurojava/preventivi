@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +22,7 @@ public class Preventivo implements Serializable {
     @Basic
     private String descriptionGeneral;
 
-    @OneToMany(targetEntity = LinePreventivo.class)
+    @OneToMany(targetEntity = LinePreventivo.class, mappedBy = "preventivo")
     private List<LinePreventivo> linePreventivoes;
 
     @Temporal(TemporalType.DATE)
@@ -31,6 +32,9 @@ public class Preventivo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(targetEntity = Customer.class)
+    private Customer customer;
 
     public Preventivo() {
 
@@ -66,5 +70,13 @@ public class Preventivo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

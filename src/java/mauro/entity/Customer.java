@@ -19,7 +19,7 @@ public class Customer implements Serializable {
     @Basic
     private String lastName;
 
-    @OneToMany(targetEntity = Preventivo.class)
+    @OneToMany(targetEntity = Preventivo.class,mappedBy = "customer")
     private List<Preventivo> preventivoes;
 
     @Basic
